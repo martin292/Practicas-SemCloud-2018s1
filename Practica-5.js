@@ -12,6 +12,7 @@ let clients = [];
 
 function close(){
     if(clients.length === 0){
+        r1.
         console.log('------------------ CERRADO --------------------');
     }
 }
