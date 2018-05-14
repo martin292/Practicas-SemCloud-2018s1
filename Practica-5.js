@@ -63,3 +63,31 @@ d.wait(1);
 
 rl.on('line', processInput);
 
+
+//3
+
+const fs = require('fs');
+const path = '/home/martin/git/Practicas-SemCloud-2018s1/students.json';
+
+fs.readFile(path, (error, data) => {
+    if(error) throw error;
+    let students = JSON.parse(data);
+    let promedios = calcularPromedios(students);
+    let promediosJSON = JSON.stringify(promedios);
+    console.log('Todos los promedios calculados exitosamente');
+});
+
+function calcularPromedios(students){
+    const reducer = (acc, cv) => [new AlumnoPromedio(cv.name, prom(cv.courses))].concat(acc);
+    return students.reduce(reducer, []);
+}
+
+function prom(courses){
+    const reducer = (acc, cv) => cv.mark + acc;
+    return courses.reduce(reducer, 0)/courses.length;
+}
+
+function AlumnoPromedio(nombre, promedio) {
+    this.nombre = nombre;
+    this.promedio = promedio;
+}
