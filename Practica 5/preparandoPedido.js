@@ -60,11 +60,13 @@ class Empleado {
     }
 
     prepararPapas() {
-        // A completar por el alumno
+        return freirPapas().then((a) => empaquetarPapas().then((b) => salarPapas().then(
+            (c) => {return a+b+c}
+        )));
     }
 
     prepararBebida() {
-        // A completar por el alumno
+        return prepararBebida();
     }
 }
 
@@ -74,7 +76,18 @@ class Restaurante {
     }
 
     armarPedido() {
-        // A completar por el alumno
+        let papas = this.empleados[0].prepararPapas();
+        let hamburguesa = this.empleados[1].prepararHamburguesa();
+        let bebida = this.empleados[2].prepararBebida();
+
+        return Promise.all([papas, hamburguesa, bebida]
+            ).then((partes) => {
+                return {
+                    papas: partes[0],
+                    hamburguesa: partes[1],
+                    bebida: partes[2]
+                };
+            });     
     }
 }
 
@@ -83,5 +96,6 @@ class Restaurante {
 const restaurante = new Restaurante();
 restaurante.armarPedido()
 .then((pedido) => {
+    console.log(' ');
     console.log("Gracias! este es mi pedido: ", pedido);
 });

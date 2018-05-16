@@ -33,10 +33,10 @@ module.exports = {
 
     // Papas
     freirPapas: function() {
-        return new Action("Freir Papas", "Papas fritas").doIt();
+        return new Action("Freir Papas", "Papas fritas ").doIt();
     },
     empaquetarPapas: function() {
-        return new Action("Empaquetar Papas", "empaquetadas").doIt();
+        return new Action("Empaquetar Papas", "empaquetadas ").doIt();
     },
     salarPapas: function() {
         return new Action("Salar Papas", "con sal").doIt();
