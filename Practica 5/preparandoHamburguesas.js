@@ -60,5 +60,3 @@ restaurante.prepararHamburguesa()
 .then((hamburguesa) => {
     console.log("Gracias! esta es mi hamburguesa: ", hamburguesa);
 });
-
-console.log('Hola');
