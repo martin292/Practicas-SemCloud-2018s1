@@ -12,7 +12,7 @@ let clients = [];
 
 function close(){
     if(clients.length === 0){
-        r1.
+        rl.close();
         console.log('------------------ CERRADO --------------------');
     }
 }
@@ -74,8 +74,15 @@ fs.readFile(path, (error, data) => {
     let students = JSON.parse(data);
     let promedios = calcularPromedios(students);
     let promediosJSON = JSON.stringify(promedios);
-    console.log('Todos los promedios calculados exitosamente');
+    escribirArchivo(promedios);
 });
+
+function escribirArchivo(data){
+    fs.writeFile('/home/martin/git/Practicas-SemCloud-2018s1/promedios.json', data, (err) => {
+        if (err) throw err;
+        console.log('Todos los promedios calculados exitosamente');
+    });
+}
 
 function calcularPromedios(students){
     const reducer = (acc, cv) => [new AlumnoPromedio(cv.name, prom(cv.courses))].concat(acc);
