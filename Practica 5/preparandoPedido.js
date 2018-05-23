@@ -60,9 +60,7 @@ class Empleado {
     }
 
     prepararPapas() {
-        return freirPapas().then((a) => empaquetarPapas().then((b) => salarPapas().then(
-            (c) => {return a+b+c}
-        )));
+        return freirPapas().then((a) => empaquetarPapas().then((b) => salarPapas().then((c) => { return a + b + c })));
     }
 
     prepararBebida() {
