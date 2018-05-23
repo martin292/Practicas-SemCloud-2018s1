@@ -203,8 +203,8 @@ https://api.mercadolibre.com/sites/MLA/search?q='televisor'&condition=new&price=
 }
 */
 
-//11
-
+//11 (Mercado libre)
+/*
 var rp = require('request-promise');
 
 const options = {
@@ -221,4 +221,29 @@ rp(options)
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 
-//
+*/
+
+
+//2 (Reqres)
+
+let request = require('request-promise');
+const fs = require('fs');
+
+const options = {
+    url: 'https://reqres.in/api/users/2',
+    method: 'GET',
+    json: true
+};
+
+request(options)
+    .then((res) => saveAvatar(res.data.avatar))
+    .catch((err) => console.log(err));
+
+function saveAvatar(avatar){
+    request.get(avatar).then((res) => {
+        fs.writeFile('avatar.jpg', res, (err) => {
+            if (err) throw err;
+            console.log(avatar + ' has been saved!');
+        });
+    });
+}
