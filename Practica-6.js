@@ -239,7 +239,7 @@ request(options)
     .then((res) => saveAvatar(res.data.avatar))
     .catch((err) => console.log(err));
 
-function saveAvatar(avatar){
+function saveAvatar(avatar) {
     request.get(avatar).then((res) => {
         fs.writeFile('avatar.jpg', res, (err) => {
             if (err) throw err;
@@ -247,3 +247,23 @@ function saveAvatar(avatar){
         });
     });
 }
+
+
+//3 (MusixMatch)
+
+const rp = require('request-promise');
+const BASE_URL = 'http://api.musixmatch.com/ws/1.1';
+
+const optionsmm = {
+    uri: BASE_URL + '/artist.albums.get?artist_id=118',
+    qs: {
+        apikey: '487a658c7713a6b3ab5332c9ca488511',
+        q_artist: 'Queen',
+    },
+    json: true
+}
+
+rp.get(optionsmm).then((res) => {
+    let albums = res.message.body.album_list;
+    console.log(albums);
+}).catch((err) => console.log(err));
